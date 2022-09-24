@@ -1,0 +1,68 @@
+---
+type Link = {
+  label: string;
+  url: string;
+};
+
+const links: Link[] = [
+  {
+    label: "Instagram",
+    url: "https://www.instagram.com/vekonydavid/",
+  },
+  {
+    label: "GitHub",
+    url: "https://github.com/davidvekony",
+  },
+  {
+    label: "LinkedIn",
+    url: "https://www.linkedin.com/in/davidvekony/",
+  },
+  {
+    label: "Telegram",
+    url: "https://t.me/davidvekony",
+  },
+  {
+    label: "Twitter",
+    url: "https://twitter.com/VekonyDavid",
+  },
+];
+---
+
+<nav class="links">
+  {
+    links.map((link) => (
+      <a href={link.url} class="link">
+        {link.label}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 90vh;
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  .link {
+    border: 2px solid #fff;
+    border-radius: 0.5rem;
+    display: block;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    background: #fff;
+    color: var(--color-bg);
+    transition: transform 0.2s;
+    font-size: var(--font-size-base);
+  }
+
+  .link:focus,
+  .link:hover {
+    transform: scale(1.05);
+  }
+</style>
