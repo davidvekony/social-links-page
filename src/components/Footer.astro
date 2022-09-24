@@ -1,0 +1,49 @@
+---
+import { Image } from "@astrojs/image/components";
+import AstroLogo from "../images/logomark-dark.svg";
+import GitHubLogo from "../images/GitHub-Mark-Light-32px.png";
+---
+
+<footer>
+  <h5>Built with Astro</h5>
+  <div>
+    <a href="https://astro.build/"
+      ><Image
+        src={AstroLogo}
+        width={28}
+        aspectRatio={1 / 1}
+        quality={100}
+        class="logo"
+        alt="Astro Logo"
+      />
+    </a>
+    <a href="https://github.com/davidvekony/social-links-page"
+      ><Image
+        src={GitHubLogo}
+        width={28}
+        aspectRatio={1 / 1}
+        quality={100}
+        class="logo"
+        alt="GitHub Logo"
+      />
+    </a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .logo {
+    margin: 0 0.5rem;
+  }
+</style>
