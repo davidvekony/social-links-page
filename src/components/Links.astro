@@ -31,7 +31,7 @@ const links: Link[] = [
 <nav class="links">
   {
     links.map((link) => (
-      <a href={link.url} class="link">
+      <a href={link.url} target="_blank" rel="noopener" class="link">
         {link.label}
       </a>
     ))
