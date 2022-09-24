@@ -8,17 +8,19 @@
 }
 
 .link {
-    border: 2px solid #c10b7e;
-    border-radius: 0.25rem;
-    color: #c10b7e;
+    border: 2px solid #fff;
+    border-radius: 0.5rem;
     display: block;
     font-size: 1.25rem;
     padding: 0.5rem;
     text-decoration: none;
+    background: #fff;
+    color: #000;
+    transition: transform 0.2s;
+    font-size: var(--font-size-base);
 }
 
 .link:focus,
 .link:hover {
-    background: #c10b7e;
-    color: #fff;
+    transform: scale(1.05);
 }

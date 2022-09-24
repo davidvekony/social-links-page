@@ -1,0 +1,14 @@
+---
+import { Image } from "@astrojs/image/components";
+import profileImage from "../images/profile.jpeg";
+---
+
+<Image src={profileImage} width={100} alt="Profile image" />
+<h1>David Vekony</h1>
+
+<style>
+  img {
+    border-radius: 50%;
+    margin-top: 1rem;
+  }
+</style>
