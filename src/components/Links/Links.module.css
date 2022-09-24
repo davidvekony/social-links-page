@@ -15,7 +15,7 @@
     padding: 0.5rem;
     text-decoration: none;
     background: #fff;
-    color: #000;
+    color: var(--color-bg);
     transition: transform 0.2s;
     font-size: var(--font-size-base);
 }

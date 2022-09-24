@@ -7,17 +7,25 @@ type Link = {
 
 const links: Link[] = [
   {
-    label: 'Twitter',
-    url: 'https://twitter.com/VekonyDavid',
+    label: 'Instagram',
+    url: 'https://www.instagram.com/vekonydavid/'
   },
   {
     label: 'GitHub',
     url: 'https://github.com/davidvekony'
   },
   {
-    label: 'Instagram',
-    url: 'https://www.instagram.com/vekonydavid/'
-  }
+    label: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/davidvekony/'
+  },
+  {
+    label: 'Telegram',
+    url: 'https://t.me/davidvekony'
+  },
+  {
+    label: 'Twitter',
+    url: 'https://twitter.com/VekonyDavid',
+  },
 ]
 
 function Links() {
