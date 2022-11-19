@@ -10,7 +10,7 @@ import GitHubLogo from "../images/GitHub-Mark-Light-32px.png";
     <a href="https://astro.build/" target="_blank" rel="noopener"
       ><Image
         src={AstroLogo}
-        width={28}
+        width={20}
         aspectRatio={1 / 1}
         quality={100}
         class="logo"
@@ -20,7 +20,7 @@ import GitHubLogo from "../images/GitHub-Mark-Light-32px.png";
     <a href="https://github.com/davidvekony/social-links-page" target="_blank"
       ><Image
         src={GitHubLogo}
-        width={28}
+        width={20}
         aspectRatio={1 / 1}
         quality={100}
         class="logo"
@@ -33,11 +33,20 @@ import GitHubLogo from "../images/GitHub-Mark-Light-32px.png";
 <style>
   footer {
     position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     left: 0;
     bottom: 0;
     width: 100%;
-    text-align: center;
-    margin-bottom: 1rem;
+    text-align: left;
+    margin: 1rem;
+    z-index: 1;
+  }
+
+  h5 {
+    font-size: 0.75rem;
+    font-weight: 600;
   }
   a {
     color: #fff;
