@@ -4,9 +4,9 @@ import AstroLogo from "../images/logomark-dark.png";
 import GitHubLogo from "../images/GitHub-Mark-Light-32px.png";
 ---
 
-<footer>
-  <h5>Built with Astro</h5>
-  <div>
+<footer class="footer items-center p-4">
+  <h5 class="items-center grid-flow-col">Built with Astro</h5>
+  <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
     <a href="https://astro.build/" target="_blank" rel="noopener"
       ><Image
         src={AstroLogo}
@@ -29,29 +29,3 @@ import GitHubLogo from "../images/GitHub-Mark-Light-32px.png";
     </a>
   </div>
 </footer>
-
-<style>
-  footer {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-    margin: 0 auto 1rem auto;
-    z-index: 1;
-  }
-
-  h5 {
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
-  .logo {
-    margin: 0 0.5rem;
-  }
-</style>
