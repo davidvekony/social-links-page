@@ -1,20 +1,13 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "@astrojs/image/components";
 import profileImage from "../images/profile.jpeg";
 ---
 
-<Picture
-  src={profileImage}
-  widths={[100, 200]}
-  sizes="(max-width: 800px) 100vw, 800px"
-  formats={["webp", "avif"]}
-  alt="Profile image"
-  class="profile-image"
-/>
+<Image src={profileImage} width={200} formats="webp" alt="Profile image" />
 <h1>David Vekony</h1>
 
 <style>
-  .profile-image > img {
+  img {
     border-radius: 50%;
     margin-top: 1rem;
   }
