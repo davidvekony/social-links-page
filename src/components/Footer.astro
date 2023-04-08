@@ -1,29 +1,20 @@
 ---
 import { Image } from "@astrojs/image/components";
 import AstroLogo from "../images/logomark-dark.png";
-import GitHubLogo from "../images/GitHub-Mark-Light-32px.png";
+import GitHubLogo from "../images/github-mark-white.png";
 ---
 
 <footer>
   <h5>Built with Astro</h5>
   <div>
     <a href="https://astro.build/" target="_blank" rel="noopener"
-      ><Image
-        src={AstroLogo}
-        width={40}
-        class="logo"
-        alt="Astro Logo"
-        format="webp"
-      />
+      ><Image src={AstroLogo} width={25} class="logo" alt="Astro Logo" />
     </a>
-    <a href="https://github.com/davidvekony/social-links-page" target="_blank"
-      ><Image
-        src={GitHubLogo}
-        width={40}
-        class="logo"
-        alt="GitHub Logo"
-        format="webp"
-      />
+    <a
+      href="https://github.com/davidvekony/social-links-page"
+      target="_blank"
+      rel="noopener"
+      ><Image src={GitHubLogo} width={25} class="logo" alt="GitHub Logo" />
     </a>
   </div>
 </footer>
