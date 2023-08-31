@@ -1,13 +1,39 @@
 ---
 const { imageClass, url, label } = Astro.props;
+
+type Link = {
+  label: string;
+  url: string;
+  imageClass: string;
+};
 ---
 
 <div class="link-row">
-  <i class=`fa-brands fa-xl ${imageClass}`></i>
+  <i
+    class=`fa-brands fa-xl ${imageClass}`
+    style="--fa-animation-duration: 3s; --fa-animation-iteration-count: 1;"></i>
   <a href={url} target="_blank" rel="noopener" class="link">
     {label}
   </a>
 </div>
+
+<script>
+  const linkRows = document.querySelectorAll("div.link-row");
+
+  linkRows.forEach((linkRow) => {
+    const icon = linkRow.querySelector("i");
+
+    if (icon) {
+      linkRow.addEventListener("mouseover", () => {
+        icon.classList.add("fa-shake");
+      });
+
+      linkRow.addEventListener("mouseout", () => {
+        icon.classList.remove("fa-shake");
+      });
+    }
+  });
+</script>
 
 <style>
   .link-row {
