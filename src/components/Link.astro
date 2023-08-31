@@ -1,0 +1,37 @@
+---
+const { imageClass, url, label } = Astro.props;
+---
+
+<div class="link-row">
+  <i class=`fa-brands fa-xl ${imageClass}`></i>
+  <a href={url} target="_blank" rel="noopener" class="link">
+    {label}
+  </a>
+</div>
+
+<style>
+  .link-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .link {
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    font-size: 1.25rem;
+    padding: 0.75rem;
+    width: 100%;
+    text-decoration: none;
+    background: #fff;
+    color: var(--color-bg);
+    transition: transform 0.2s;
+    font-size: var(--font-size-base);
+    gap: 1rem;
+  }
+  .link:focus,
+  .link:hover {
+    transform: scale(1.05);
+  }
+</style>
