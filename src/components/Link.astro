@@ -44,6 +44,11 @@ type Link = {
     gap: 1rem;
   }
 
+  .link-row:last-child .link {
+    background: #ffdd00;
+    font-weight: bold;
+  }
+
   .link {
     border-radius: 0.5rem;
     display: flex;
@@ -58,13 +63,11 @@ type Link = {
     font-size: var(--font-size-base);
     gap: 1rem;
   }
-  .link-row:last-child .link {
-    background: #ffdd00;
-    font-weight: bold;
-  }
+
   .fa-solid.fa-mug-hot {
     color: #ffdd00;
   }
+
   .link:focus,
   .link:hover {
     transform: scale(1.05);
