@@ -1,17 +1,19 @@
 ---
-const { imageClass, url, label } = Astro.props;
+const { imageClass, url, label, colour } = Astro.props;
 
 type Link = {
   label: string;
   url: string;
   imageClass: string;
+  colour?: string;
 };
 ---
 
 <div class="link-row">
   <i
-    class=`fa-brands fa-xl ${imageClass}`
-    style="--fa-animation-duration: 3s; --fa-animation-iteration-count: 1;"></i>
+    class={`fa-xl ${imageClass}`}
+    style={`--fa-animation-duration: 3s; --fa-animation-iteration-count: 1; ${colour ? `--fa-color: ${colour};` : ""}`}
+  ></i>
   <a href={url} target="_blank" rel="noopener" class="link">
     {label}
   </a>
@@ -55,6 +57,13 @@ type Link = {
     transition: transform 0.2s;
     font-size: var(--font-size-base);
     gap: 1rem;
+  }
+  .link-row:last-child .link {
+    background: #ffdd00;
+    font-weight: bold;
+  }
+  .fa-solid.fa-mug-hot {
+    color: #ffdd00;
   }
   .link:focus,
   .link:hover {

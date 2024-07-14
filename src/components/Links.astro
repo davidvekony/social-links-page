@@ -5,43 +5,45 @@ type Link = {
   label: string;
   url: string;
   imageClass: string;
+  colour?: string;
 };
 
 const links: Link[] = [
   {
     label: "GitHub",
     url: "https://github.com/davidvekony",
-    imageClass: "fa-github",
+    imageClass: "fa-brands fa-github",
   },
   {
     label: "Instagram",
     url: "https://www.instagram.com/vekonydavid/",
-    imageClass: "fa-instagram",
+    imageClass: "fa-brands fa-instagram",
   },
   {
     label: "LinkedIn",
     url: "https://www.linkedin.com/in/davidvekony/",
-    imageClass: "fa-linkedin",
+    imageClass: "fa-brands fa-linkedin",
   },
   {
     label: "Mastodon",
     url: "https://mas.to/@davidvekony",
-    imageClass: "fa-mastodon",
+    imageClass: "fa-brands fa-mastodon",
   },
   {
     label: "Telegram",
     url: "https://t.me/davidvekony",
-    imageClass: "fa-telegram",
+    imageClass: "fa-brands fa-telegram",
   },
   {
     label: "Threads",
     url: "https://www.threads.net/@vekonydavid",
-    imageClass: "fa-threads",
+    imageClass: "fa-brands fa-threads",
   },
   {
     label: "Buy Me A Coffee",
     url: "https://buymeacoffee.com/davidvekony",
-    imageClass: "fa-mug-hot",
+    imageClass: "fa-solid fa-mug-hot",
+    colour: "#ffdd00",
   },
 ];
 ---
