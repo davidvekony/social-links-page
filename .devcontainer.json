@@ -1,0 +1,29 @@
+{
+  "name": "Astro Social Links Site",
+  "build": {
+    "dockerfile": "./Dockerfile"
+  },
+  "portsAttributes": {
+    "4321": {
+      "label": "Application"
+    }
+  },
+  "forwardPorts": [
+    4321
+  ],
+  "postCreateCommand": "pnpm install && pnpm run build",
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "src/pages/index.astro"
+      ]
+    },
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
