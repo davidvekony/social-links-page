@@ -1,29 +1,25 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
   "name": "Astro Social Links Site",
-  "build": {
-    "dockerfile": "./.devcontainer/Dockerfile"
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "sudo corepack enable pnpm && pnpm install",
+  // Configure tool-specific properties.
+  // "customizations": {},
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+  "containerEnv": {
+    "HOME": "/home/node"
   },
-  "portsAttributes": {
-    "4321": {
-      "label": "Application"
-    }
-  },
-  "forwardPorts": [
-    4321
+  "runArgs": [
+    "--userns=keep-id:uid=1000,gid=1000"
   ],
-  "postCreateCommand": "pnpm install && pnpm run build",
-  "customizations": {
-    "codespaces": {
-      "openFiles": [
-        "src/pages/index.astro"
-      ]
-    },
-    "vscode": {
-      "extensions": [
-        "astro-build.astro-vscode",
-        "esbenp.prettier-vscode",
-        "ms-azuretools.vscode-docker"
-      ]
-    }
-  }
+  "containerUser": "node",
+  "updateRemoteUserUID": true
 }
