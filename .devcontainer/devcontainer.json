@@ -3,6 +3,7 @@
     "build": {
         "dockerfile": "./Dockerfile"
     },
+    "runArgs": ["--dns=8.8.8.8", "--dns=8.8.4.4"],
     "mounts": [
         "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
         "source=${localEnv:HOME}/.config/gh,target=/home/node/.config/gh,type=bind,consistency=cached"
