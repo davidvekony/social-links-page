@@ -74,7 +74,7 @@
 
   --shadow-shadow: var(--shadow);
   --shadow-nav: 4px 4px 0px 0px var(--border);
-  --shadow-darkNav: 4px 4px 0px 0px var(--dark-border);
+  --shadow-darkNav: 4px 4px 0px 0px var(--border);
 
   --font-weight-base: var(--base-font-weight);
   --font-weight-heading: var(--heading-font-weight);
