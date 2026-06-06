@@ -3,4 +3,5 @@ overrides:
 
 allowBuilds:
   esbuild: true
+  msw: set this to true or false
   sharp: true

@@ -41,9 +41,6 @@ importers:
       react-dom:
         specifier: ^19.2.7
         version: 19.2.7(react@19.2.7)
-      shadcn:
-        specifier: ^4.10.0
-        version: 4.10.0(@types/node@25.9.1)
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -56,6 +53,10 @@ importers:
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
+    devDependencies:
+      shadcn:
+        specifier: ^4.10.0
+        version: 4.10.0(@types/node@25.9.1)
 
 packages:
 
