@@ -53,17 +53,7 @@ const links: Link[] = [
 ];
 ---
 
-<nav class="links">
+<nav class="flex flex-col gap-4 mx-auto w-[90vw] max-w-[350px]">
   {links.map((link) => <Link {...link} />)}
 </nav>
 
-<style>
-  .links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 0 auto;
-    width: 90vw;
-    max-width: 350px;
-  }
-</style>
