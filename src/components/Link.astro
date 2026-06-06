@@ -19,10 +19,12 @@ const buttonClass = cn(
 ---
 
 <div class="link-row flex items-center gap-4">
-  <i
-    class={`fa-xl ${imageClass} inline-block size-6 text-center`}
-    style={`--fa-animation-duration: 3s; --fa-animation-iteration-count: 1; ${colour ? `--fa-color: ${colour};` : ""}`}
-  ></i>
+    <span class="inline-flex items-center justify-center size-6 shrink-0">
+      <i
+        class={`fa-xl ${imageClass}`}
+        style={`--fa-animation-duration: 3s; --fa-animation-iteration-count: 1; ${colour ? `--fa-color: ${colour};` : ""}`}
+      ></i>
+    </span>
   <a href={url} target="_blank" rel="noopener" class={buttonClass}>
     {label}
   </a>
