@@ -22,3 +22,6 @@ pnpm-debug.log*
 .vscode/
 .idea/
 .pnpm-store/
+
+# worktrees
+.worktrees/
