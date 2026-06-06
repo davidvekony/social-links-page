@@ -1,31 +1,28 @@
 ---
-import { Image } from "astro:assets";
-import AstroLogo from "../images/logomark-dark.png";
-import GitHubLogo from "../images/github-mark.png";
+import { Rocket } from "lucide-react";
+import { CodeXml } from "lucide-react";
 ---
 
 <footer class="flex flex-col items-center max-w-[90vw] mx-auto my-4 mt-12">
   <h5 class="text-sm font-heading">Built with Astro</h5>
-  <div class="flex items-center">
-    <a href="https://astro.build/" target="_blank" rel="noopener">
-      <Image
-        src={AstroLogo}
-        width={25}
-        class="mx-2"
-        alt="Astro Logo"
-      />
+  <div class="flex items-center gap-4">
+    <a
+      href="https://astro.build/"
+      target="_blank"
+      rel="noopener"
+      class="text-foreground hover:opacity-70 transition-opacity"
+      aria-label="Astro"
+    >
+      <Rocket size={20} />
     </a>
     <a
       href="https://github.com/davidvekony/social-links-page"
       target="_blank"
       rel="noopener"
+      class="text-foreground hover:opacity-70 transition-opacity"
+      aria-label="GitHub"
     >
-      <Image
-        src={GitHubLogo}
-        width={25}
-        class="mx-2"
-        alt="GitHub Logo"
-      />
+      <CodeXml size={20} />
     </a>
   </div>
 </footer>
