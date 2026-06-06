@@ -67,6 +67,7 @@
   body {
     @apply text-foreground font-base bg-background;
     font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
   }
 
   h1, h2, h3, h4, h5, h6 {
