@@ -3,12 +3,12 @@ import { Image } from "astro:assets";
 import profileImage from "../images/profile.jpg";
 ---
 
-<Image src={profileImage} width={125} alt="Profile photo of David Vekony" />
-<h1>David Vekony</h1>
-
-<style>
-  img {
-    border-radius: 50%;
-    margin-top: 1rem;
-  }
-</style>
+<div class="flex flex-col items-center">
+  <Image
+    src={profileImage}
+    width={125}
+    alt="Profile photo of David Vekony"
+    class="rounded-full mt-4"
+  />
+  <h1 class="text-4xl my-8">David Vekony</h1>
+</div>
