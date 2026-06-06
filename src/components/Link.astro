@@ -18,8 +18,8 @@ const buttonClass = cn(
 );
 ---
 
-<div class="link-row flex items-center gap-4">
-    <span class="inline-flex items-center justify-center size-6 shrink-0">
+<div class="link-row relative">
+    <span class="absolute left-3 top-1/2 -translate-y-1/2 inline-flex items-center justify-center size-6 text-foreground">
       <i
         class={`fa-xl ${imageClass}`}
         style={`--fa-animation-duration: 3s; --fa-animation-iteration-count: 1; ${colour ? `--fa-color: ${colour};` : ""}`}
