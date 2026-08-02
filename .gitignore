@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # worktrees
 .worktrees/
+
+# superpowers (local plans/specs)
+docs/superpowers/
