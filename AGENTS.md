@@ -15,7 +15,7 @@ No test, lint, or typecheck scripts exist. There is no CI.
 
 ## Dependencies
 - Node `>=24.15.0`
-- Astro `^6.4.4` (only direct dependency)
+- Astro `^7.1.6` (not the only direct dependency — see `package.json` for the full list: @astrojs/react, tailwindcss, lucide-react, and others)
 
 ## Dependency override
 `pnpm-workspace.yaml` pins `@ungap/structured-clone` to `1.3.1` to patch CWE-502.
