@@ -28,3 +28,5 @@ pnpm-debug.log*
 
 # superpowers (local plans/specs)
 docs/superpowers/
+
+.codegraph/
