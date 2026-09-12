@@ -36,6 +36,3 @@ No test, lint, or typecheck scripts exist and there is no CI. `pnpm build` is th
 ## Docker / deployment
 - Root `Dockerfile`: multi-stage production build (node:24-alpine + corepack pnpm → `pnpm build` → alpine + Caddy file-server on port 80).
 - Deploys via Dokploy: clone of `main` + `docker build` — keep `main` buildable; build failures show up only on the next deploy.
-
-## Dev container
-- `.devcontainer/` (TypeScript Node 24 + pnpm image). Mounts host `~/.gitconfig` and `~/.config/gh`; requires the `--dns` `runArgs` for networking.
