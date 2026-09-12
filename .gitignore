@@ -32,3 +32,5 @@ docs/superpowers/
 .codegraph/
 
 .fallow/
+.agents/
+skills-lock.json
