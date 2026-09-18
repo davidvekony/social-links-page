@@ -1,43 +1,43 @@
 ---
-import { buttonVariants } from "@/lib/button-variants";
-import { cn } from "@/lib/utils";
+import { buttonVariants } from "#/lib/button-variants";
+import { cn } from "#/lib/utils";
 
 const { imageClass, url, label, colour, highlight } = Astro.props;
 
 const buttonClass = cn(
-  buttonVariants({ variant: "neutral", size: "lg" }),
-  "flex-1 text-base",
-  highlight ? "!bg-[#ffdd00] font-bold" : "",
+    buttonVariants({ variant: "neutral", size: "lg" }),
+    "flex-1 text-base",
+    highlight ? "!bg-[#ffdd00] font-bold" : "",
 );
 ---
 
 <div class="link-row flex items-center gap-3">
     <span class="inline-flex items-center justify-center size-6 shrink-0">
-      <i
-        class={`fa-xl ${imageClass}`}
-        style={`--fa-animation-duration: 3s; --fa-animation-iteration-count: 1; ${colour ? `--fa-color: ${colour};` : ""}`}
-      ></i>
+        <i
+            class={`fa-xl ${imageClass}`}
+            style={`--fa-animation-duration: 3s; --fa-animation-iteration-count: 1; ${colour ? `--fa-color: ${colour};` : ""}`}
+        ></i>
     </span>
-  <a href={url} target="_blank" rel="noopener" class={buttonClass}>
-    {label}
-  </a>
+    <a href={url} target="_blank" rel="noopener" class={buttonClass}>
+        {label}
+    </a>
     <span class="size-6 shrink-0 invisible" aria-hidden="true"></span>
 </div>
 
 <script>
-  const linkRows = document.querySelectorAll("div.link-row");
+    const linkRows = document.querySelectorAll("div.link-row");
 
-  linkRows.forEach((linkRow) => {
-    const icon = linkRow.querySelector("i");
+    linkRows.forEach((linkRow) => {
+        const icon = linkRow.querySelector("i");
 
-    if (icon) {
-      linkRow.addEventListener("mouseover", () => {
-        icon.classList.add("fa-shake");
-      });
+        if (icon) {
+            linkRow.addEventListener("mouseover", () => {
+                icon.classList.add("fa-shake");
+            });
 
-      linkRow.addEventListener("mouseout", () => {
-        icon.classList.remove("fa-shake");
-      });
-    }
-  });
+            linkRow.addEventListener("mouseout", () => {
+                icon.classList.remove("fa-shake");
+            });
+        }
+    });
 </script>

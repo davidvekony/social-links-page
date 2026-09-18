@@ -1,11 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProfilePage from "../components/ProfilePage.astro";
-import { profile } from "@/profile";
+import { profile } from "#/profile";
 ---
 
 <Layout title={profile.title}>
-  <main class="mx-auto p-4 text-center">
-    <ProfilePage profile={profile} />
-  </main>
+    <main class="mx-auto p-4 text-center">
+        <ProfilePage profile={profile} />
+    </main>
 </Layout>

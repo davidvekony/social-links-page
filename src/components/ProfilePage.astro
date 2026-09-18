@@ -2,37 +2,35 @@
 import Header from "./Header.astro";
 import Link from "./Link.astro";
 import Footer from "./Footer.astro";
-import type { Profile, Network } from "@/profile";
+import type { Profile, Network } from "#/profile";
 
 type Props = {
-  profile: Profile;
+    profile: Profile;
 };
 
 const { profile } = Astro.props;
 
 const networks: Record<Network, { imageClass: string; colour?: string }> = {
-  bluesky: { imageClass: "fa-brands fa-bluesky" },
-  github: { imageClass: "fa-brands fa-github" },
-  instagram: { imageClass: "fa-brands fa-instagram" },
-  linkedin: { imageClass: "fa-brands fa-linkedin" },
-  mastodon: { imageClass: "fa-brands fa-mastodon" },
-  threads: { imageClass: "fa-brands fa-threads" },
-  coffee: { imageClass: "fa-solid fa-mug-hot", colour: "#ffdd00" },
+    bluesky: { imageClass: "fa-brands fa-bluesky" },
+    github: { imageClass: "fa-brands fa-github" },
+    instagram: { imageClass: "fa-brands fa-instagram" },
+    linkedin: { imageClass: "fa-brands fa-linkedin" },
+    mastodon: { imageClass: "fa-brands fa-mastodon" },
+    threads: { imageClass: "fa-brands fa-threads" },
+    coffee: { imageClass: "fa-solid fa-mug-hot", colour: "#ffdd00" },
 };
 ---
 
 <Header name={profile.name} avatar={profile.avatar} />
-<nav class="flex flex-col gap-4 mx-auto w-[90vw] max-w-[350px]">
-  {
-    profile.links.map((link) => (
-      <Link
-        label={link.label}
-        url={link.url}
-        imageClass={networks[link.network].imageClass}
-        colour={networks[link.network].colour}
-        highlight={link.highlight}
-      />
-    ))
-  }
+<nav class="flex flex-col gap-4 mx-auto w-[90vw] max-w-87.5">
+    {profile.links.map((link) => (
+        <Link
+            label={link.label}
+            url={link.url}
+            imageClass={networks[link.network].imageClass}
+            colour={networks[link.network].colour}
+            highlight={link.highlight}
+        />
+    ))}
 </nav>
 <Footer />
