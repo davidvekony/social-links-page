@@ -1,15 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Links from "../components/Links.astro";
-import Footer from "../components/Footer.astro";
+import ProfilePage from "../components/ProfilePage.astro";
+import { profile } from "@/profile";
 ---
 
-<Layout title="David Vekony">
+<Layout title={profile.title}>
   <main class="mx-auto p-4 text-center">
-    <Header />
-    <Links />
-    <Footer />
+    <ProfilePage profile={profile} />
   </main>
 </Layout>
-

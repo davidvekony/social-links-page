@@ -2,19 +2,12 @@
 import { buttonVariants } from "@/lib/button-variants";
 import { cn } from "@/lib/utils";
 
-const { imageClass, url, label, colour } = Astro.props;
-
-type Link = {
-  label: string;
-  url: string;
-  imageClass: string;
-  colour?: string;
-};
+const { imageClass, url, label, colour, highlight } = Astro.props;
 
 const buttonClass = cn(
   buttonVariants({ variant: "neutral", size: "lg" }),
   "flex-1 text-base",
-  label === "Buy Me A Coffee" ? "!bg-[#ffdd00] font-bold" : "",
+  highlight ? "!bg-[#ffdd00] font-bold" : "",
 );
 ---
 

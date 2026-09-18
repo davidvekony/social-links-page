@@ -1,14 +1,23 @@
 ---
 import { Image } from "astro:assets";
-import profileImage from "../images/profile.jpg";
+
+type Props = {
+  name: string;
+  avatar: {
+    src: ImageMetadata;
+    alt: string;
+  };
+};
+
+const { name, avatar } = Astro.props;
 ---
 
 <div class="flex flex-col items-center">
   <Image
-    src={profileImage}
+    src={avatar.src}
     width={125}
-    alt="Profile photo of David Vekony"
+    alt={avatar.alt}
     class="rounded-full mt-4 outline-2 outline-border"
   />
-  <h1 class="text-5xl my-8">David Vekony</h1>
+  <h1 class="text-5xl my-8">{name}</h1>
 </div>
