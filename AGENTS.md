@@ -46,5 +46,5 @@ Note: `astro check` covers `.astro` templates; Vite+ (= Oxlint + tsgolint) only 
 
 ## Docker / deployment
 - Root `Dockerfile`: multi-stage production build (`ghcr.io/voidzero-dev/vite-plus:1.1.0` running `vp install --frozen-lockfile`, `vp run check`, `vp run build` → alpine + Caddy file-server on port 80).
-- The Vite+ image runs as non-root `vp:vp`, so `COPY` uses `--chown=vp:vp`; without it `vp install` cannot write `node_modules`.
+- The Vite+ image runs as non-root `vp:vp`; `WORKDIR` creates `/app` owned by that user, and `COPY --chown=vp:vp` keeps copied files writable by it.
 - Deploys via Dokploy: clone of `main` + `docker build` — keep `main` buildable; build failures show up only on the next deploy.

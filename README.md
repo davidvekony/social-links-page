@@ -34,7 +34,7 @@ vp install
 | `vp run check`     | Lint + type-check in one command                             |
 | `vp run format`    | Format with Oxfmt (opt-in; not enforced by `check`)          |
 
-If you don't have the global `vp` CLI, run the same commands through pnpm (`pnpm exec vp <command>`, e.g. `pnpm exec vp run build`).
+If you don't have the global `vp` CLI, run the same commands through pnpm: install once with `pnpm install`, then `pnpm exec vp <command>` (e.g. `pnpm exec vp run build`).
 
 > [!NOTE]
 > `.npmrc` sets `shamefully-hoist=true`, which Astro requires for pnpm installs. Do not remove it — Vite+ drives pnpm underneath.
