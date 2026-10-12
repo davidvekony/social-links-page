@@ -1,8 +1,8 @@
 node_modules/
 dist/
 .astro/
+# Keep .gitignore in the context: vp lint/check (tsgolint) uses it to skip node_modules.
 .git/
-.gitignore
 .fallow/
 .codegraph/
 .superpowers/
