@@ -1,22 +1,33 @@
 # AGENTS.md
 
 ## Package manager
-- Use `pnpm`, not npm or yarn.
+- Vite+ (`vp`) is the single entry point; it drives pnpm underneath. Use `vp install`/`vp run <script>`; direct pnpm also works (`pnpm exec vp ...`) but `vp` is the documented front door.
 - `shamefully-hoist=true` in `.npmrc` is required by Astro. Do not remove.
 
 ## Commands
-| Command        | Does                               |
-| -------------- | ---------------------------------- |
-| `pnpm dev`     | Start Astro dev server (port 4321) |
-| `pnpm build`   | Production build to `dist/`        |
-| `pnpm preview` | Preview the production build       |
+| Command            | Does                                              |
+| ------------------ | ------------------------------------------------- |
+| `vp run dev`       | Start Astro dev server (port 4321)                |
+| `vp run build`     | Production build to `dist/`                       |
+| `vp run preview`   | Preview the production build                      |
+| `vp run lint`      | Lint with Oxlint through Vite+                    |
+| `vp run typecheck` | Type-check TS (tsgolint) and `.astro` (`astro check`) |
+| `vp run check`     | Lint + type-check in one command                  |
+| `vp run format`    | Format with Oxfmt (opt-in; `check.fmt` is false)  |
 
-No test, lint, or typecheck scripts exist and there is no CI. `pnpm build` is the only verification available. TypeScript is not installed — Astro transpiles TS at build time without type checking (`astro check` would require installing `typescript` + `@astrojs/check`).
+There is no test suite and no CI. Verification: `vp run check` plus `vp run build` (a Docker build additionally proves deploy parity).
+
+Note: `astro check` covers `.astro` templates; Vite+ (= Oxlint + tsgolint) only lints `<script>` blocks inside `.astro` files, so both are needed for full coverage.
 
 ## Dependencies
-- Node `>=24.15.0`.
+- Node `^24.15.0 || >=26.0.0` (Vite+ 1.1.0 excludes Node 25).
+- Vite+ is pinned in `devDependencies` (`vite-plus@1.1.0`); the global `vp` CLI delegates to it inside this project.
+- `pnpm-workspace.yaml` (pnpm 12 reads overrides only there — `package.json#overrides` is ignored):
+  - aliases `vite` to `@voidzero-dev/vite-plus-core@1.1.0`;
+  - pins `@ungap/structured-clone` to `1.3.1` to patch CWE-502. Do not remove this override.
+  - The pnpm "unmet peer vite" warning is expected: the core reports version 1.1.0 while peers request Vite semver ranges.
+- `tsconfig.json` has no `baseUrl`: tsgolint (TypeScript 7) rejects it. The `#/*` → `./src/*` paths alias works without it.
 - `sharp` must stay a direct dependency: Astro 7 declares it as an *optional peer*, which pnpm never auto-installs. Removing it breaks fresh installs (Docker builds) with `Could not find Sharp` — local builds can still pass because image generation reuses the cache, hiding the breakage.
-- `pnpm-workspace.yaml` pins `@ungap/structured-clone` to `1.3.1` to patch CWE-502. Do not remove this override.
 
 ## Icons — two systems
 - Footer uses `@lucide/astro` components. There is no React anywhere; the React stack (@astrojs/react, react, react-dom) was removed — don't reintroduce it.
@@ -24,7 +35,7 @@ No test, lint, or typecheck scripts exist and there is no CI. `pnpm build` is th
 
 ## shadcn/ui
 - Managed by the `shadcn` CLI (`pnpm exec shadcn add <name>`; config in `components.json`). Theme lives in `src/styles/globals.css`; helpers in `src/lib/utils.ts` (`cn()`) and `src/lib/button-variants.ts`.
-- `tsconfig.json` is load-bearing: the `@/*` → `src/*` alias is used by imports and resolved by Astro/Vite at build time. Breaking it breaks the build.
+- `tsconfig.json` is load-bearing: the `#/*` → `./src/*` alias is used by imports and resolved by Astro/Vite at build time. Breaking it breaks the build.
 
 ## Project structure
 - `src/pages/` — routes (file-based routing)
@@ -34,5 +45,6 @@ No test, lint, or typecheck scripts exist and there is no CI. `pnpm build` is th
 - `public/` — static assets (favicons); `src/images/` — images optimized by Astro
 
 ## Docker / deployment
-- Root `Dockerfile`: multi-stage production build (node:24-alpine + corepack pnpm → `pnpm build` → alpine + Caddy file-server on port 80).
+- Root `Dockerfile`: multi-stage production build (`ghcr.io/voidzero-dev/vite-plus:1.1.0` running `vp install --frozen-lockfile`, `vp run check`, `vp run build` → alpine + Caddy file-server on port 80).
+- The Vite+ image runs as non-root `vp:vp`, so `COPY` uses `--chown=vp:vp`; without it `vp install` cannot write `node_modules`.
 - Deploys via Dokploy: clone of `main` + `docker build` — keep `main` buildable; build failures show up only on the next deploy.
