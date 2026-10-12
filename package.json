@@ -8,7 +8,11 @@
         "start": "astro dev --host",
         "build": "astro build",
         "preview": "astro preview",
-        "astro": "astro"
+        "astro": "astro",
+        "lint": "vp lint",
+        "typecheck": "vp check --no-fmt --no-lint && astro check",
+        "check": "vp check --no-fmt && astro check",
+        "format": "vp fmt"
     },
     "dependencies": {
         "@lucide/astro": "^1.55.0",
