@@ -1,18 +1,11 @@
 # Multi-stage build for ultra-minimal production image
-FROM node:24-alpine AS base
+FROM ghcr.io/voidzero-dev/vite-plus:1.1.0 AS build
 WORKDIR /app
-RUN corepack enable pnpm
-
-# Dependencies stage
-FROM base AS deps
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --prod
-
-# Build stage
-FROM base AS build
-COPY . .
-RUN pnpm install --frozen-lockfile
-RUN pnpm run build
+COPY --chown=vp:vp package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+RUN vp install --frozen-lockfile
+COPY --chown=vp:vp . .
+RUN vp run check
+RUN vp run build
 
 # Ultra-minimal production stage using a static file server
 FROM alpine:latest AS runtime
