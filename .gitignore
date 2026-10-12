@@ -34,3 +34,5 @@ docs/superpowers/
 .fallow/
 .agents/
 skills-lock.json
+
+.zed/
