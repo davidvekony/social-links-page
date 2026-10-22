@@ -1,5 +1,5 @@
 # Multi-stage build for ultra-minimal production image
-FROM ghcr.io/voidzero-dev/vite-plus:1.1.0 AS build
+FROM ghcr.io/voidzero-dev/vite-plus:1.3.0 AS build
 WORKDIR /app
 COPY --chown=vp:vp package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 RUN vp install --frozen-lockfile
