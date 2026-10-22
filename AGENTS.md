@@ -20,12 +20,13 @@ There is no test suite and no CI. Verification: `vp run check` plus `vp run buil
 Note: `astro check` covers `.astro` templates; Vite+ (= Oxlint + tsgolint) only lints `<script>` blocks inside `.astro` files, so both are needed for full coverage.
 
 ## Dependencies
-- Node `^24.15.0 || >=26.0.0` (Vite+ 1.1.0 excludes Node 25).
-- Vite+ is pinned in `devDependencies` (`vite-plus@1.1.0`); the global `vp` CLI delegates to it inside this project.
+- Node `^24.15.0 || >=26.0.0` (Vite+ 1.3.0 excludes Node 25).
+- Vite+ is pinned in `devDependencies` (`vite-plus@1.3.0`); the global `vp` CLI delegates to it inside this project.
 - `pnpm-workspace.yaml` (pnpm 12 reads overrides only there — `package.json#overrides` is ignored):
-  - aliases `vite` to `@voidzero-dev/vite-plus-core@1.1.0`;
+  - aliases `vite` to `@voidzero-dev/vite-plus-core@1.3.0`;
+  - pins `vitest` to `5.0.5`, the version bundled with Vite+ 1.3.0, so any transitive Vitest matches the toolchain;
   - pins `@ungap/structured-clone` to `1.3.1` to patch CWE-502. Do not remove this override.
-  - The pnpm "unmet peer vite" warning is expected: the core reports version 1.1.0 while peers request Vite semver ranges.
+  - The pnpm "unmet peer vite" warning is expected: the core reports version 1.3.0 while peers request Vite semver ranges.
 - `tsconfig.json` has no `baseUrl`: tsgolint (TypeScript 7) rejects it. The `#/*` → `./src/*` paths alias works without it.
 - `sharp` must stay a direct dependency: Astro 7 declares it as an *optional peer*, which pnpm never auto-installs. Removing it breaks fresh installs (Docker builds) with `Could not find Sharp` — local builds can still pass because image generation reuses the cache, hiding the breakage.
 
@@ -45,6 +46,6 @@ Note: `astro check` covers `.astro` templates; Vite+ (= Oxlint + tsgolint) only 
 - `public/` — static assets (favicons); `src/images/` — images optimized by Astro
 
 ## Docker / deployment
-- Root `Dockerfile`: multi-stage production build (`ghcr.io/voidzero-dev/vite-plus:1.1.0` running `vp install --frozen-lockfile`, `vp run check`, `vp run build` → alpine + Caddy file-server on port 80).
+- Root `Dockerfile`: multi-stage production build (`ghcr.io/voidzero-dev/vite-plus:1.3.0` running `vp install --frozen-lockfile`, `vp run check`, `vp run build` → alpine + Caddy file-server on port 80).
 - The Vite+ image runs as non-root `vp:vp`; `WORKDIR` creates `/app` owned by that user, and `COPY --chown=vp:vp` keeps copied files writable by it.
 - Deploys via Dokploy: clone of `main` + `docker build` — keep `main` buildable; build failures show up only on the next deploy.

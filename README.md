@@ -40,7 +40,7 @@ If you don't have the global `vp` CLI, run the same commands through pnpm: insta
 > `.npmrc` sets `shamefully-hoist=true`, which Astro requires for pnpm installs. Do not remove it — Vite+ drives pnpm underneath.
 
 > [!NOTE]
-> `pnpm-workspace.yaml` aliases `vite` to `@voidzero-dev/vite-plus-core@1.1.0` so the Astro toolchain and Vite+ share one Vite copy. The resulting pnpm "unmet peer vite" warning is expected: the core reports its own 1.1.0 version while peers request Vite semver ranges.
+> `pnpm-workspace.yaml` aliases `vite` to `@voidzero-dev/vite-plus-core@1.3.0` so the Astro toolchain and Vite+ share one Vite copy. It also pins `vitest` to `5.0.5`, the version bundled with Vite+ 1.3.0. The resulting pnpm "unmet peer vite" warning is expected: the core reports its own 1.3.0 version while peers request Vite semver ranges.
 
 > [!IMPORTANT]
 > `sharp` is a direct dependency on purpose. Astro declares it as an optional peer, so pnpm never auto-installs it, and fresh installs would fail image generation without it.
@@ -60,7 +60,7 @@ public/           # Static assets (favicons)
 
 ## Docker
 
-The `Dockerfile` runs a multi-stage build: `vp install`, `vp run check`, and `vp run build` on the official `ghcr.io/voidzero-dev/vite-plus:1.1.0` image, then `dist/` is served by Caddy on port 80.
+The `Dockerfile` runs a multi-stage build: `vp install`, `vp run check`, and `vp run build` on the official `ghcr.io/voidzero-dev/vite-plus:1.3.0` image, then `dist/` is served by Caddy on port 80.
 
 ```bash
 docker build -t social-links-page .
