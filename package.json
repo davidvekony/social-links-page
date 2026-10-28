@@ -15,7 +15,7 @@
     "format": "vp fmt"
   },
   "dependencies": {
-    "@lucide/astro": "^1.61.0",
+    "@lucide/astro": "^1.62.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.2",
     "class-variance-authority": "^0.7.1",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
-    "shadcn": "^4.22.1",
+    "shadcn": "^4.23.0",
     "typescript": "6.0.3",
     "vite-plus": "1.4.0"
   },
