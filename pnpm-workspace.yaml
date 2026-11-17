@@ -1,8 +1,9 @@
 overrides:
   "@ungap/structured-clone": 1.4.0
   "@emnapi/runtime": 1.11.3
-  vite: npm:@voidzero-dev/vite-plus-core@1.5.0
+  vite: npm:@voidzero-dev/vite-plus-core@1.6.0
   vitest: 5.1.0
+  "unifont>undici": ^8.12.2
 
 allowBuilds:
   esbuild: true

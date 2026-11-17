@@ -23,14 +23,15 @@ Note: `astro check` covers `.astro` templates; Vite+ (= Oxlint + tsgolint) only 
 
 ## Dependencies
 
-- Node `>=26.13.0`. The floor exists because Node released security patches in 26.13.0. Local tooling and the `ghcr.io/voidzero-dev/vite-plus:1.5.0` image both run Node 26.13.0; Vite+ excludes Node 25.
-- Vite+ is pinned in `devDependencies` (`vite-plus@1.5.0`); the global `vp` CLI delegates to it inside this project.
+- Node `>=26.13.0`. The floor exists because Node released security patches in 26.13.0. Local tooling and the `ghcr.io/voidzero-dev/vite-plus:1.6.0` image currently run Node 26.13.1; Vite+ excludes Node 25.
+- Vite+ is pinned in `devDependencies` (`vite-plus@1.6.0`); the global `vp` CLI delegates to it inside this project.
 - `pnpm-workspace.yaml` (pnpm 12 reads overrides only there — `package.json#overrides` is ignored):
-  - aliases `vite` to `@voidzero-dev/vite-plus-core@1.5.0`;
-  - pins `vitest` to `5.1.0`, the version bundled with Vite+ 1.5.0, so any transitive Vitest matches the toolchain;
+  - aliases `vite` to `@voidzero-dev/vite-plus-core@1.6.0`;
+  - pins `vitest` to `5.1.0`, the version bundled with Vite+ 1.6.0, so any transitive Vitest matches the toolchain;
   - pins `@ungap/structured-clone` to `1.4.0` to patch CWE-502 (everything below `1.3.1` is the patched-away line). Do not remove this override.
-  - pins `@emnapi/runtime` to `1.11.3`. Without it pnpm resolves the optional peer to `2.0.0-beta.2` tree-wide (rolldown 1.3.0 accepts the beta), which breaks `import('@astrojs/check')` with `this.bridge.setLastError is not a function` and crashes `astro check` at process exit. All consumers' declared ranges accept `^1.7.1`.
-  - The pnpm "unmet peer vite" warning is expected: the core reports version 1.5.0 while peers request Vite semver ranges.
+  - pins `@emnapi/runtime` to `1.11.3`. Without it pnpm resolves the optional peer to `2.0.0-beta.2` tree-wide (`@napi-rs/wasm-runtime` declares `^1.7.1 || ^2.0.0-alpha.4`, which accepts the beta), which breaks `import('@astrojs/check')` with `this.bridge.setLastError is not a function` and crashes `astro check` at process exit. All consumers' declared ranges accept `^1.7.1`.
+  - pins `unifont>undici` to `^8.12.2`. unifont declares `undici: ^8.0.0`, but a stale lockfile resolution kept `undici@8.11.2`, which carries four high-severity advisories (GHSA-xjj6-f33q-929c, GHSA-4w7w-5xrc-9h26, GHSA-2m5v-pch6-74hx, GHSA-qrxm-fqhp-jwvm). The scoped selector leaves the shadcn chain's `undici@7.x` untouched.
+  - The pnpm "unmet peer vite" warning is expected: the core reports version 1.6.0 while peers request Vite semver ranges.
 - `tsconfig.json` has no `baseUrl`: tsgolint (TypeScript 7) rejects it. The `#/*` → `./src/*` paths alias works without it.
 - `typescript` stays at `6.0.3`: `astro check` hard-blocks TypeScript 7.0 ("does not currently support TypeScript 7.0"), and the experimental replacement `@astrojs/ts-content-mapper` targets 7.1+. Revisit when Astro ships TS 7.1 support.
 - `sharp` must stay a direct dependency: Astro 7 declares it as an _optional peer_, which pnpm never auto-installs. Removing it breaks fresh installs (Docker builds) with `Could not find Sharp` — local builds can still pass because image generation reuses the cache, hiding the breakage.
@@ -55,6 +56,6 @@ Note: `astro check` covers `.astro` templates; Vite+ (= Oxlint + tsgolint) only 
 
 ## Docker / deployment
 
-- Root `Dockerfile`: multi-stage production build (`ghcr.io/voidzero-dev/vite-plus:1.5.0` running `vp install --frozen-lockfile`, `vp run check`, `vp run build` → alpine + Caddy file-server on port 80).
+- Root `Dockerfile`: multi-stage production build (`ghcr.io/voidzero-dev/vite-plus:1.6.0` running `vp install --frozen-lockfile`, `vp run check`, `vp run build` → alpine + Caddy file-server on port 80).
 - The Vite+ image runs as non-root `vp:vp`; `WORKDIR` creates `/app` owned by that user, and `COPY --chown=vp:vp` keeps copied files writable by it.
 - Deploys via Dokploy: clone of `main` + `docker build` — keep `main` buildable; build failures show up only on the next deploy.
